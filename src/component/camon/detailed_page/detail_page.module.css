@@ -1,0 +1,25 @@
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: 120px 120px 0 120px;
+}
+
+.image {
+    width: 100%;
+}
+
+.smallText {
+    font: 400 25px/40px "Old+Standard+TT";
+    color: #aca592;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font: 400 50px/60px "Old+Standard+TT";
+    color: #ffae2b;
+    margin: 40px 0 60px 0;
+}

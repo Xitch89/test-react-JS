@@ -1,0 +1,21 @@
+.error_page_container {
+    height: 100%;
+    width: 100%;
+}
+
+.error_page {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 10% 0 10% 0;
+}
+
+.error_massage {
+    color: rgb(199, 233, 180);
+    font: 400 45px/65px "Old+Standard+TT";
+}
+
+/* додати медіа*/

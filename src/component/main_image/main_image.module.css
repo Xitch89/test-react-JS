@@ -1,0 +1,65 @@
+.mainImage {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 602px;
+  margin-top: 80px;
+  background: url("../../assets/images/title-image.jpg") center center/cover no-repeat;
+}
+@media (max-width: 565px) {
+  .mainImage {
+    margin-top: 65px;
+  }
+}
+.mainImage_smallTitleText {
+  font: 400 12px/22px "Old+Standard+TT";
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffae2b;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.mainImage_titleText {
+  font: 400 70px/80px "Old+Standard+TT";
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 35px;
+}
+@media (max-width: 565px) {
+  .mainImage_titleText {
+    font: 300 35px/40px "Old+Standard+TT";
+  }
+}
+.mainImage_linkLayout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 400 11px/22px "Old+Standard+TT";
+  color: #181511;
+  box-sizing: border-box;
+  width: 143px;
+  height: 50px;
+  background: #ffae2b;
+  border: 1px solid #ffae2b;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  transition: 0.4s;
+}
+.mainImage_linkLayout:hover {
+  border: 1px solid #00ffc8;
+  color: #00ffc8;
+  background: #786740;
+}
+@media (max-width: 565px) {
+  .mainImage_linkLayout {
+    width: 110px;
+    height: 40px;
+  }
+}

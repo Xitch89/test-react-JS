@@ -1,0 +1,10 @@
+.bottomBlock {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 461px;
+  background: url("../../assets/images/bottom_image.jpg") center center/cover no-repeat;
+}

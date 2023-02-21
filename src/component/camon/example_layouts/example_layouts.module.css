@@ -1,0 +1,40 @@
+.exampleLayouts {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.exampleLayouts_core {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font: 400 12px/22px "Old+Standard+TT";
+  color: #aca592;
+  margin: 120px 0 10px 0;
+}
+@media (max-width: 400px) {
+  .exampleLayouts_core {
+    margin: 60px 0 10px 0;
+  }
+}
+@media (max-width: 320px) {
+  .exampleLayouts_core {
+    margin: 35px 0 10px 0;
+  }
+}
+
+.bigYellowText {
+  font: 400 50px/60px "Old+Standard+TT";
+  color: #ffae2b;
+  margin-bottom: 60px;
+}
+@media (max-width: 400px) {
+  .bigYellowText {
+    font: 300 30px/40px "Old+Standard+TT";
+  }
+}
+@media (max-width: 320px) {
+  .bigYellowText {
+    margin-bottom: 35px;
+  }
+}
