@@ -12,7 +12,7 @@ import LandingVr3 from "./component/detailed_page/landingVr3";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/test-react-JS" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="/example_page/landing_vr1" element={<LandingVr1 />} />
       <Route path="/example_page/landing_vr2" element={<LandingVr2 />} />
