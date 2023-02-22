@@ -11,11 +11,11 @@ import LandingVr3 from "./component/detailed_page/landingVr3";
 
 const router = createHashRouter(
   createRoutesFromElements(
-    <Route path="/test-react-JS" element={<Layout />}>
+    <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
-      <Route path="/example_page/landing_vr1" element={<LandingVr1 />} />
-      <Route path="/example_page/landing_vr2" element={<LandingVr2 />} />
-      <Route path="/example_page/landing_vr3" element={<LandingVr3 />} />
+      <Route path="example_page/landing_vr1" element={<LandingVr1 />} />
+      <Route path="example_page/landing_vr2" element={<LandingVr2 />} />
+      <Route path="example_page/landing_vr3" element={<LandingVr3 />} />
       <Route path="*" element={<ErrorPage /> } />
     </Route>
   )
