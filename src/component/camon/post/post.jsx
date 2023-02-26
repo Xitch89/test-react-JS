@@ -11,7 +11,7 @@ class Post extends Component {
   }
   render() {
     const {imageRef} = this.state;
-    const {image, massage, id} = this.props;
+    const {image, massage, id, date} = this.props;
     return(
       <div className={classes.layoutsItems}>
         <Link to={`${imageRef}${id}`}>
@@ -23,6 +23,7 @@ class Post extends Component {
         >
           {massage}
         </Link>
+        <p className={classes.date}>{date}</p>
       </div>
     );
   }

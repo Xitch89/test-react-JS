@@ -512,3 +512,264 @@ export const LandingVr3 = (props) => {
   )
 }
 
+
+Осьцей норм
+import React, { Component } from "react";
+import classes from "./content.module.css";
+
+
+//* images
+import landing_vr1 from "../../assets/images/landing_vr1.png";
+import about_company from "../../assets/images/about_company.png";
+import about_team from "../../assets/images/about_team.png";
+import blog1 from "../../assets/images/blog1.png";
+import blog2 from "../../assets/images/blog2.png";
+import blog3 from "../../assets/images/blog3.png";
+import blog_categories from "../../assets/images/blog_categories.png";
+import contact_us from "../../assets/images/contact_us.png";
+import faq_page from "../../assets/images/faq_page.png";
+import landing_vr2 from "../../assets/images/landing_vr2.png";
+import landing_vr3 from "../../assets/images/landing_vr3.png";
+import licenses from "../../assets/images/licenses.png";
+import portfolio1 from "../../assets/images/portfolio1.png";
+import portfolio2 from "../../assets/images/portfolio2.png";
+import portfolio3 from "../../assets/images/portfolio3.png";
+import portfolio4 from "../../assets/images/portfolio4.png";
+import pricing from "../../assets/images/pricing.png";
+import single_blog from "../../assets/images/single_blog.png";
+import single_project from "../../assets/images/single_project.png";
+import single_team_member from "../../assets/images/single_team_member.png";
+import style_guide from "../../assets/images/style_guide.png";
+import Post from "../camon/post/post";
+
+
+
+class Content extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      isDateChecked: false,
+      isAlphabetChecked: false,
+      postData: [
+      {id: 'landing_vr1', massage: 'Landing vr.1', image: landing_vr1, date: '10.03.2023'},
+      {id: 'landing_vr2', massage: 'Landing vr.2', image: landing_vr2, date: '11.03.2023'},
+      {id: 'landing_vr3', massage: 'Landing vr.3', image: landing_vr3, date: '12.03.2023'},
+      {id: 'portfolio1', massage: 'Portfolio 1', image: portfolio1, date: '08.02.2022'},
+      {id: 'portfolio2', massage: 'Portfolio 1', image: portfolio2, date: '27.11.2023'},
+      {id: 'portfolio3', massage: 'Portfolio 1', image: portfolio3, date: '24.03.2023'},
+      {id: 'portfolio4', massage: 'Portfolio 1', image: portfolio4, date: '22.03.2023'},
+      {id: 'single_project', massage: 'Single Project', image: single_project, date: '22.03.2023'},
+      {id: 'about_company', massage: 'About Company', image: about_company, date: '22.03.2023'},
+      {id: 'about_team', massage: 'About TEam', image: about_team, date: '22.03.2023'},
+      {id: 'single_team_member', massage: 'Single Team Member', image: single_team_member, date: '22.03.2023'},
+      {id: 'faq_page', massage: 'FAQ Page', image: faq_page, date: '22.03.2023'},
+      {id: 'contact_us', massage: 'Contact Us', image: contact_us, date: '22.03.2023'},
+      {id: 'blog1', massage: 'Blog 1', image: blog1, date: '22.03.2023'},
+      {id: 'blog2', massage: 'Blog 2', image: blog2, date: '22.03.2023'},
+      {id: 'blog3', massage: 'Blog 3', image: blog3, date: '22.03.2023'},
+      {id: 'blog_categories', massage: 'Blog Categories', image: blog_categories, date: '22.03.2023'},
+      {id: 'single_blog', massage: 'Single Blog', image: single_blog, date: '22.03.2023'},
+      {id: 'pricing', massage: 'Pricing', image: pricing, date: '22.03.2023'},
+      {id: 'style_guide', massage: 'Style guide', image: style_guide, date: '22.03.2023'},
+      {id: 'licenses', massage: 'Licenses', image: licenses, date: '22.03.2023'}
+    ],
+    originalPostData: [],
+    };
+    this.state.originalPostData = this.state.postData.slice();
+  }
+  
+  render() {
+    const { isDateChecked, isAlphabetChecked, postData, originalPostData} = this.state;
+
+
+    const sortByIdAlphabet = (post) => {
+      return post.slice().sort((a, b) => a.id.localeCompare(b.id));
+    };
+
+
+    let handleCheckboxAlphabetChange = (event) => {
+      if (event.target.checked) {
+        this.setState({ isAlphabetChecked: true, postData: sortByIdAlphabet(postData) });
+      } else {
+        this.setState({ isAlphabetChecked: false, postData: originalPostData });
+      }
+    };
+
+    const sortByIdDate = (post) => {
+      return post.slice().sort((a, b) => a.id.localeCompare(b.id));
+    };
+
+    let handleCheckboxDateChange = (event) => {
+      if (event.target.checked) {
+        this.setState({ isDateChecked: true, postData: sortByIdDate (postData) });
+      } else {
+        this.setState({ isDateChecked: false, postData: originalPostData });
+      }
+    };
+
+    const newPost = postData.map((post) => (
+      <Post key={post.id} id={post.id} massage={post.massage} image={post.image} date={post.date} />
+    ));
+
+    return (
+      <div>
+        <label>
+          <input type="checkbox" checked={isAlphabetChecked} onChange={handleCheckboxAlphabetChange} />
+          Filter by alphabet
+        </label>
+        <label>
+          <input type="checkbox" checked={isDateChecked} onChange={handleCheckboxDateChange} />
+          Filter by date
+        </label>
+        <div className={classes.exampleLayouts_container}>
+          <div className={classes.exampleLayouts_wrapper}>
+            {newPost}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Content;
+
+
+import React, { Component } from "react";
+import classes from "./content.module.css";
+
+
+//* images
+import landing_vr1 from "../../assets/images/landing_vr1.png";
+import about_company from "../../assets/images/about_company.png";
+import about_team from "../../assets/images/about_team.png";
+import blog1 from "../../assets/images/blog1.png";
+import blog2 from "../../assets/images/blog2.png";
+import blog3 from "../../assets/images/blog3.png";
+import blog_categories from "../../assets/images/blog_categories.png";
+import contact_us from "../../assets/images/contact_us.png";
+import faq_page from "../../assets/images/faq_page.png";
+import landing_vr2 from "../../assets/images/landing_vr2.png";
+import landing_vr3 from "../../assets/images/landing_vr3.png";
+import licenses from "../../assets/images/licenses.png";
+import portfolio1 from "../../assets/images/portfolio1.png";
+import portfolio2 from "../../assets/images/portfolio2.png";
+import portfolio3 from "../../assets/images/portfolio3.png";
+import portfolio4 from "../../assets/images/portfolio4.png";
+import pricing from "../../assets/images/pricing.png";
+import single_blog from "../../assets/images/single_blog.png";
+import single_project from "../../assets/images/single_project.png";
+import single_team_member from "../../assets/images/single_team_member.png";
+import style_guide from "../../assets/images/style_guide.png";
+import Post from "../camon/post/post";
+
+
+
+class Content extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      isChecked: false,
+      postData: [
+      {id: 'landing_vr1', massage: 'Landing vr.1', image: landing_vr1, date: '10.03.2023'},
+      {id: 'landing_vr2', massage: 'Landing vr.2', image: landing_vr2, date: '11.03.2023'},
+      {id: 'landing_vr3', massage: 'Landing vr.3', image: landing_vr3, date: '12.03.2023'},
+      {id: 'portfolio1', massage: 'Portfolio 1', image: portfolio1, date: '08.02.2022'},
+      {id: 'portfolio2', massage: 'Portfolio 1', image: portfolio2, date: '27.11.2023'},
+      {id: 'portfolio3', massage: 'Portfolio 1', image: portfolio3, date: '24.03.2023'},
+      {id: 'portfolio4', massage: 'Portfolio 1', image: portfolio4, date: '22.03.2023'},
+      {id: 'single_project', massage: 'Single Project', image: single_project, date: '22.03.2023'},
+      {id: 'about_company', massage: 'About Company', image: about_company, date: '22.03.2023'},
+      {id: 'about_team', massage: 'About TEam', image: about_team, date: '22.03.2023'},
+      {id: 'single_team_member', massage: 'Single Team Member', image: single_team_member, date: '22.03.2023'},
+      {id: 'faq_page', massage: 'FAQ Page', image: faq_page, date: '22.03.2023'},
+      {id: 'contact_us', massage: 'Contact Us', image: contact_us, date: '22.03.2023'},
+      {id: 'blog1', massage: 'Blog 1', image: blog1, date: '22.03.2023'},
+      {id: 'blog2', massage: 'Blog 2', image: blog2, date: '22.03.2023'},
+      {id: 'blog3', massage: 'Blog 3', image: blog3, date: '22.03.2023'},
+      {id: 'blog_categories', massage: 'Blog Categories', image: blog_categories, date: '22.03.2023'},
+      {id: 'single_blog', massage: 'Single Blog', image: single_blog, date: '22.03.2023'},
+      {id: 'pricing', massage: 'Pricing', image: pricing, date: '22.03.2023'},
+      {id: 'style_guide', massage: 'Style guide', image: style_guide, date: '22.03.2023'},
+      {id: 'licenses', massage: 'Licenses', image: licenses, date: '22.03.2023'}
+    ],
+    originalPostData: [],
+    };
+    this.state.originalPostData = this.state.postData.slice();
+  }
+  
+  sortPosts(postData, isCheckedAlphabet, isCheckedDate) {
+    let newPosts = postData.slice();
+
+    if (isCheckedAlphabet) {
+      newPosts.sort((a, b) => a.id.localeCompare(b.id));
+    }
+
+    if (isCheckedDate) {
+      newPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    return newPosts;
+  }
+
+  handleCheckboxAlphabetChange = (event) => {
+    const isCheckedAlphabet = event.target.checked;
+    const { isCheckedDate, originalPostData } = this.state;
+
+    const postData = this.sortPosts(
+      originalPostData,
+      isCheckedAlphabet,
+      isCheckedDate
+    );
+
+    this.setState({
+      isCheckedAlphabet,
+      postData,
+    });
+  };
+
+  handleCheckboxDateChange = (event) => {
+    const isCheckedDate = event.target.checked;
+    const { isCheckedAlphabet, originalPostData } = this.state;
+
+    const postData = this.sortPosts(
+      originalPostData,
+      isCheckedAlphabet,
+      isCheckedDate
+    );
+
+    this.setState({
+      isCheckedDate,
+      postData,
+    });
+  };
+
+
+  render() {
+    const { isCheckedAlphabet, isCheckedDate, postData } = this.state
+
+   const newPost = postData.map((post) => (
+      <Post key={post.id} id={post.id} massage={post.massage} image={post.image} date={post.date} />
+    ));
+
+
+    return (
+      <div>
+        <label>
+          <input type="checkbox" checked={isCheckedAlphabet} onChange={this.handleCheckboxAlphabetChange} />
+          Filter by alphabet
+        </label>
+        <label>
+          <input type="checkbox" checked={isCheckedDate} onChange={this.handleCheckboxDateChange} />
+          Filter by date
+        </label>
+        <div className={classes.exampleLayouts_container}>
+          <div className={classes.exampleLayouts_wrapper}>
+            {newPost}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Content;
