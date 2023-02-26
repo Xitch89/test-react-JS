@@ -36,6 +36,18 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin: 0 0 30px 120px;
+  
+}
+@media (max-width: 991px) {
+  .checkBox {
+    margin: 0 0 30px 60px;
+  }
+}
+
+@media (max-width: 565px) {
+  .checkBox {
+    margin: 0 0 30px 30px;
+  }
 }
 
  /* Customize the label (the container) */
@@ -52,6 +64,12 @@
   user-select: none;
   font: 400 25px/35px "Old+Standard+TT";
   color: #aca592;
+}
+
+@media (max-width: 320px) {
+  .checkBoxContainer {
+  font: 400 15px/25px "Old+Standard+TT";
+  }
 }
 
 /* Hide the browser's default checkbox */
@@ -71,6 +89,12 @@
   height: 20px;
   width: 20px;
   background-color: #eee;
+}
+
+@media (max-width: 320px) {
+  .checkmark {
+  top: 3px;
+  }
 }
 
 /* On mouse-over, add a grey background color */
