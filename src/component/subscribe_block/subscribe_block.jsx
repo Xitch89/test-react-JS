@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import classes from "./subscribe_block.module.css";
+import React, { Component } from 'react';
+import classes from './subscribe_block.module.css';
 
 class SubscribeBlock extends Component {
   render() {
     return (
       <div className={classes.subscribeBlock}>
         <p className={classes.subscribeBlock_bigYellowText}>
-          Subscribe to Atelier <br />
+          Subscribe to Atelier 
+          <br />
           Newsletter
         </p>
         <p className={classes.subscribeBlock_someText}>

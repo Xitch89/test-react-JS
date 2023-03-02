@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import classes from "./follow_social.module.css";
-//images
-import soc_img from "../../assets/images/soc_img.jpg";
-import soc_img2 from "../../assets/images/soc_img2.jpg";
-import soc_img4 from "../../assets/images/soc_img4.jpg";
-import soc_img3 from "../../assets/images/soc_img3.jpg";
-import { ReactComponent as InstaImg } from "../../assets/icons/insta-img.svg";
-import RefButton from "../camon/refButton";
+import React, { Component } from 'react';
+import classes from './follow_social.module.css';
+// images
+import SocImg from '../../assets/images/soc_img.jpg';
+import SocImg2 from '../../assets/images/soc_img2.jpg';
+import SocImg4 from '../../assets/images/soc_img4.jpg';
+import SocImg3 from '../../assets/images/soc_img3.jpg';
+import { ReactComponent as InstaImg } from '../../assets/icons/insta-img.svg';
+import RefButton from '../camon/refButton';
 
 class FollowSocial extends Component {
   render() {
@@ -19,7 +19,7 @@ class FollowSocial extends Component {
             </div>
             <img
               className={classes.followSocial_socImg}
-              src={soc_img}
+              src={SocImg}
               alt="404"
             />
           </div>
@@ -29,7 +29,7 @@ class FollowSocial extends Component {
             </div>
             <img
               className={classes.followSocial_socImg}
-              src={soc_img2}
+              src={SocImg2}
               alt="404"
             />
           </div>
@@ -43,7 +43,7 @@ class FollowSocial extends Component {
             </div>
             <img
               className={classes.followSocial_socImg}
-              src={soc_img3}
+              src={SocImg3}
               alt="404"
             />
           </div>
@@ -53,7 +53,7 @@ class FollowSocial extends Component {
             </div>
             <img
               className={classes.followSocial_socImg}
-              src={soc_img4}
+              src={SocImg4}
               alt="404"
             />
           </div>

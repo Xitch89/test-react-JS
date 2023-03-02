@@ -1,9 +1,12 @@
-import React, { Component } from "react";
-import classes from "./example_layouts.module.css";
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import classes from './example_layouts.module.css';
 
-class ExampleLayouts extends Component {
+class ExampleLayouts extends React.Component {
   render() {
-    const {grayText, yellowText} = this.props;
+    const { 
+      grayText, yellowText 
+    } = this.props;
     return (
       <div className={classes.exampleLayouts}>
         <p className={classes.exampleLayouts_core}>{grayText}</p>
@@ -12,5 +15,10 @@ class ExampleLayouts extends Component {
     );
   }
 }
+
+ExampleLayouts.propTypes = {
+  grayText: PropTypes.string.isRequired,
+  yellowText: PropTypes.string.isRequired,
+};
 
 export default ExampleLayouts;

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import classes from "./bottom_block.module.css";
+import React, { Component } from 'react';
+import classes from './bottom_block.module.css';
 
 class BottomBlock extends Component {
   render() {
-    return <div className={classes.bottomBlock}></div>;
+    return <div className={classes.bottomBlock} />;
   }
 }
 

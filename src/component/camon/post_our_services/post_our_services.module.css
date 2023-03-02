@@ -1,0 +1,40 @@
+
+.ourServices_items {
+  border: 1px solid #4b4136;
+}
+.ourServices_items img {
+  width: 40px;
+  height: 40px;
+}
+
+.ourServices_yellowText {
+  font: 400 24px/34px "Old+Standard+TT";
+  color: #ffae2b;
+  padding: 20px 0 10px 61px;
+}
+.ourServices_grayText {
+  font: 400 15px/26px "Old+Standard+TT";
+  color: #aca592;
+  padding: 0 0 5px 61px;
+}
+.ourServices_graySmallText {
+  font: 400 11px/26px "Old+Standard+TT";
+  color: #aca592;
+  padding: 0 117px 76px 61px;
+}
+
+.bigYellowText {
+  font: 400 50px/60px "Old+Standard+TT";
+  color: #ffae2b;
+  margin-bottom: 60px;
+}
+@media (max-width: 400px) {
+  .bigYellowText {
+    font: 300 30px/40px "Old+Standard+TT";
+  }
+}
+@media (max-width: 320px) {
+  .bigYellowText {
+    margin-bottom: 35px;
+  }
+}
