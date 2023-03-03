@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostOurServices from '../camon/post_our_services/post_our_services';
+import PostOurServices from './our_servicesView';
 import classes from './our_services.module.css';
 // svg
 import { ReactComponent as Square } from '../../assets/icons/square.svg';
@@ -13,7 +13,7 @@ class OurServices extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uorServicesDate: [
+      ourServicesDate: [
         { 
           upperSvg: <Square style={{ margin: '60px 0 0 61px' }} />,
           lowerSvg: <Triangle style={{ 
@@ -47,10 +47,10 @@ class OurServices extends Component {
 
   render() {
     const { 
-      uorServicesDate
+      ourServicesDate
     } = this.state;
 
-    const newUorServices = uorServicesDate.map((services) => (
+    const newOurServices = ourServicesDate.map((services) => (
       <PostOurServices
         upperSvg={services.upperSvg}
         lowerSvg={services.lowerSvg}
@@ -61,7 +61,7 @@ class OurServices extends Component {
     return (
       <div className={classes.ourServices_container}>
         <div className={classes.ourServices_wrapper}>
-          {newUorServices}
+          {newOurServices}
         </div>
       </div>
     );

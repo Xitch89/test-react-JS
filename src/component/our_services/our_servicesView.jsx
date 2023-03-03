@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import classes from './post_our_services.module.css';
+import classes from './our_servicesView.module.css';
 
 class PostOurServices extends Component {
   render() {

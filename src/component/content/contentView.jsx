@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
-import classes from './post.module.css';
+import classes from './contentView.module.css';
 
 class Post extends React.Component {
   constructor(props) {
