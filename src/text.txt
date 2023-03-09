@@ -654,3 +654,81 @@ class Content extends Component {
 }
 
 export default Content;
+
+
+
+It seems like you're trying to sort posts based on different criteria and display them. Here are some observations and recommendations about your code:
+
+You can simplify your constructor by moving the code to a separate method that returns an object containing the initial state. This approach is more readable and easier to maintain. Here's an example:
+
+kotlin
+Copy code
+class Content extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    const copyPostData = postData.slice();
+    const numberSortPostData = this.sortByPostNumber(copyPostData);
+    return {
+      isDateChecked: false,
+      isAlphabetChecked: false,
+      isLessChecked: false,
+      copyPostData,
+      numberSortPostData,
+    };
+  }
+}
+You can also use the componentDidMount method to update the state. Since you're duplicating the same code in the constructor and componentDidMount, it's better to remove the duplicated code from the constructor and use componentDidMount to update the state.
+
+Instead of using slice() to create a copy of an array, you can use the spread operator ([...]) which is more concise and easier to read.
+
+In the sortByPostNumber method, you can simplify the code by using the insertion sort algorithm. Here's an example:
+
+css
+Copy code
+sortByPostNumber = (post) => {
+  const copyPostData = [...post];
+  for (let i = 1; i < copyPostData.length; i += 1) {
+    const key = copyPostData[i];
+    let j = i - 1;
+    while (j >= 0 && copyPostData[j].postNumber > key.postNumber) {
+      copyPostData[j + 1] = copyPostData[j];
+      j -= 1;
+    }
+    copyPostData[j + 1] = key;
+  }
+  return copyPostData;
+};
+You can simplify the event handler methods by creating a separate method that returns the updated state object. This approach makes the code more readable and easier to maintain. Here's an example:
+
+kotlin
+Copy code
+handleCheckboxAlphabetChange = (event) => {
+  const { copyPostData } = this.state;
+  const updatedNumberSortPostData = this.sortByIdAlphabet(this.state.numberSortPostData);
+  const updatedState = {
+    isAlphabetChecked: event.target.checked,
+    isDateChecked: false,
+    isLessChecked: false,
+    numberSortPostData: updatedNumberSortPostData,
+  };
+  if (!event.target.checked) {
+    updatedState.numberSortPostData = this.sortByPostNumber(copyPostData);
+  }
+  this.setState(updatedState);
+};
+You can use the destructuring assignment to simplify the code and make it more readable. For example, instead of using this.state.isAlphabetChecked, you can use const { isAlphabetChecked } = this.state;.
+
+You can simplify the handlePostClick method by using the optional chaining operator (?.) to avoid errors when the event object is null. Here's an example:
+
+csharp
+Copy code
+handlePostClick = (id, event) => {
+  if (event?.ctrlKey && event.button === 2) {
+    this.setState({ activePostId: id });
+  }
+};
+In the render method, you can use the map method directly on the postData array and pass the sorted data to the Post component as props. This approach simpl
