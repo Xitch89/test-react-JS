@@ -11,13 +11,15 @@ class Content extends React.Component {
       isAlphabetChecked: false,
       isLessChecked: false,
       copyPostData: [],
-      numberSortPostData: []
+      numberSortPostData: [],
+      selectedCard: null
     };
     const copyPostData = postData.slice();
     const numberSortPostData = this.sortByPostNumber(copyPostData);
     this.state.copyPostData = copyPostData;
     this.state.numberSortPostData = numberSortPostData;
   }
+  // default sort
 
   componentDidMount() {
     const { copyPostData } = this.state;
@@ -30,7 +32,7 @@ class Content extends React.Component {
     for (let i = 0; i < copyPostData.length; i += 1) {
       const key = copyPostData[i];
       let j = i - 1;
-      while (j >= 0 && copyPostData[j].postNumber > key.postNumber) {
+      while (j >= 0 && copyPostData[j].id > key.id) {
         copyPostData[j + 1] = copyPostData[j];
         j -= 1;
       }
@@ -39,8 +41,10 @@ class Content extends React.Component {
     return copyPostData;
   };
 
+  // filters
+
   sortByIdAlphabet = (post) => {
-    return post.slice().sort((a, b) => a.id.localeCompare(b.id));
+    return post.slice().sort((a, b) => a.postRef.localeCompare(b.postRef));
   };
 
   handleCheckboxAlphabetChange = (event) => {
@@ -88,8 +92,8 @@ class Content extends React.Component {
   };
 
   sortByLessThan10 = (post) => {
-    const sortedPostData = post.slice().sort((a, b) => b.postNumber - a.postNumber);
-    return sortedPostData.slice(0, 10);
+    const sortedPostData = post.slice().sort((a, b) => b.id - a.id);
+    return sortedPostData.slice(0, -10);
   };
 
   handleCheckboxLessThan10 = (event) => {
@@ -112,6 +116,71 @@ class Content extends React.Component {
     }
   };
 
+  // Click
+
+  handleCardClick = (id) => {
+    const { selectedCard } = this.state;
+    if (selectedCard === id) {
+      this.setState({ selectedCard: null });
+    } else {
+      this.setState({ selectedCard: id });
+    }
+  };
+
+  // drag and drop
+
+  sortPost = (a, b) => {
+    if (a.order > b.order) {
+      return 1;
+    }
+    return -1;
+  };
+
+  dragStartHandler(e, card) {
+    this.setState({ currentCurd: card });
+  }
+
+  dragEndHandler(e) {
+    const eventTarget = e.target;
+    eventTarget.style.background = '';
+  }
+
+  dragOverHandler(e) {
+    const eventTarget = e.target;
+    e.preventDefault();
+    eventTarget.style.background = 'gray';
+  }
+
+  dragLeaveHandler(e) {
+    const eventTarget = e.target;
+    eventTarget.style.background = '';
+  }
+
+  dropHandler(e, card) {
+    const { currentCurd, copyPostData } = this.state;
+    const eventTarget = e.target;
+    eventTarget.style.background = '';
+    e.preventDefault();
+    const updatedCopyPostData = copyPostData.map((c) => {
+      if (c.id === card.id) {
+        return { ...c, order: currentCurd.order };
+      }
+      if (c.id === currentCurd.order) {
+        return { ...c, order: card.order };
+      }
+      return c;
+    });
+    const updatedNumberSortPostData = updatedCopyPostData.sort(this.sortPost);
+    this.setState({
+      isLessChecked: false,
+      isDateChecked: false,
+      isAlphabetChecked: false,
+      currentCurd: null,
+      copyPostData: updatedCopyPostData,
+      numberSortPostData: updatedNumberSortPostData
+    });
+  }
+
   render() {
     const {
       isAlphabetChecked,
@@ -121,13 +190,25 @@ class Content extends React.Component {
     } = this.state;
 
     const newPost = numberSortPostData.map((post) => (
-      <Post
-        key={post.id}
-        id={post.id} 
-        massage={post.massage} 
-        image={post.image} 
-        date={post.date}
-      />
+      <div 
+        onDragStart={(e) => this.dragStartHandler(e, post)}
+        onDragLeave={(e) => this.dragLeaveHandler(e)}
+        onDragEnd={(e) => this.dragEndHandler(e)}
+        onDragOver={(e) => this.dragOverHandler(e)}
+        onDrop={(e) => this.dropHandler(e, post)}
+        draggable
+        className={`${classes.layoutsItems} ${this.selectedCard ? 'classes.selected' : ''}`}
+      >
+        <Post
+          id={post.id}
+          postRef={post.postRef} 
+          massage={post.massage} 
+          image={post.image} 
+          date={post.date}
+          onClick={() => this.handleCardClick(post.id)}
+          selectedCard={this.selectedCard}
+        />
+      </div>
     ));
 
     return (
