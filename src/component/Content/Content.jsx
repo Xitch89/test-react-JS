@@ -12,7 +12,9 @@ class Content extends React.Component {
       isLessChecked: false,
       copyPostData: [],
       numberSortPostData: [],
-      selectedCard: null
+      clickedCard: null,
+      // cursor: 0,
+      // result: []
     };
     const copyPostData = postData.slice();
     const numberSortPostData = this.sortByPostNumber(copyPostData);
@@ -25,7 +27,26 @@ class Content extends React.Component {
     const { copyPostData } = this.state;
     const numberSortPostData = this.sortByPostNumber(copyPostData);
     this.setState({ numberSortPostData });
+    document.addEventListener('keydown', this.handleKeyDown);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  // handleKeyDown(e) {
+  //   const { cursor, result } = this.state;
+  //   // arrow up/down button should select next/previous list element
+  //   if (e.keyCode === 38 && cursor > 0) {
+  //     this.setState(prevState => ({
+  //       cursor: prevState.cursor - 1
+  //     }));
+  //   } else if (e.keyCode === 40 && cursor < result.length - 1) {
+  //     this.setState(prevState => ({
+  //       cursor: prevState.cursor + 1
+  //     }));
+  //   }
+  // }
 
   sortByPostNumber = (post) => {
     const copyPostData = [...post];
@@ -118,14 +139,39 @@ class Content extends React.Component {
 
   // Click
 
-  handleCardClick = (id) => {
-    const { selectedCard } = this.state;
-    if (selectedCard === id) {
-      this.setState({ selectedCard: null });
+  handleCardClick = (key) => {
+    const { clickedCard } = this.state;
+    if (key.order === clickedCard) {
+      this.setState({ clickedCard: null });
     } else {
-      this.setState({ selectedCard: id });
+      this.setState({ clickedCard: key.order });
     }
   };
+
+  // handleKeyDown = (e) => {
+  //   const { numberSortPostData } = this.state;
+  //   const selectedCard = document.querySelector('.selected');
+  //   if (selectedCard) {
+  //     let nextCard;
+  //     switch (e.key) {
+  //       case 'ArrowLeft':
+  //         nextCard = selectedCard.previousSibling;
+  //         break;
+  //       case 'ArrowRight':
+  //         nextCard = selectedCard.nextSibling;
+  //         break;
+  //       default:
+  //         return;
+  //     }
+  //     if (nextCard) {
+  //       selectedCard.classList.remove('selected');
+  //       nextCard.classList.add('selected');
+  //     }
+  //   } else if (numberSortPostData.length > 0) {
+  //     numberSortPostData[0].ref.current.focus();
+  //     numberSortPostData[0].ref.current.classList.add('selected');
+  //   }
+  // };
 
   // drag and drop
 
@@ -137,7 +183,7 @@ class Content extends React.Component {
   };
 
   dragStartHandler(e, card) {
-    this.setState({ currentCurd: card });
+    this.setState({ currentCard: card });
   }
 
   dragEndHandler(e) {
@@ -157,15 +203,15 @@ class Content extends React.Component {
   }
 
   dropHandler(e, card) {
-    const { currentCurd, copyPostData } = this.state;
+    const { currentCard, copyPostData } = this.state;
     const eventTarget = e.target;
     eventTarget.style.background = '';
     e.preventDefault();
     const updatedCopyPostData = copyPostData.map((c) => {
-      if (c.id === card.id) {
-        return { ...c, order: currentCurd.order };
+      if (c.order === card.order) {
+        return { ...c, order: currentCard.order };
       }
-      if (c.id === currentCurd.order) {
+      if (c.order === currentCard.order) {
         return { ...c, order: card.order };
       }
       return c;
@@ -175,7 +221,7 @@ class Content extends React.Component {
       isLessChecked: false,
       isDateChecked: false,
       isAlphabetChecked: false,
-      currentCurd: null,
+      currentCard: null,
       copyPostData: updatedCopyPostData,
       numberSortPostData: updatedNumberSortPostData
     });
@@ -187,28 +233,39 @@ class Content extends React.Component {
       isDateChecked,
       isLessChecked,
       numberSortPostData,
+      clickedCard,
+      id,
+      postRef,
+      massage,
+      image,
+      date
+      // cursor
     } = this.state;
+    const clicked = `${classes.layoutsItems} ${clickedCard ? 'selected' : ''}`;
+    // const isSelected = this.id === this.clickedCard;
+    // const className = `${classes.layoutsItems} ${isSelected ? classes.selected : ''}`;
 
     const newPost = numberSortPostData.map((post) => (
-      <div 
+      <button 
+        type="button"
         onDragStart={(e) => this.dragStartHandler(e, post)}
         onDragLeave={(e) => this.dragLeaveHandler(e)}
         onDragEnd={(e) => this.dragEndHandler(e)}
         onDragOver={(e) => this.dragOverHandler(e)}
         onDrop={(e) => this.dropHandler(e, post)}
+        onClick={this.handleCardClick}
+        // onKeyDown={this.handleKeyDown}
         draggable
-        className={`${classes.layoutsItems} ${this.selectedCard ? 'classes.selected' : ''}`}
+        className={clicked} 
       >
         <Post
-          id={post.id}
-          postRef={post.postRef} 
-          massage={post.massage} 
-          image={post.image} 
-          date={post.date}
-          onClick={() => this.handleCardClick(post.id)}
-          selectedCard={this.selectedCard}
+          id={id}
+          postRef={postRef} 
+          massage={massage} 
+          image={image} 
+          date={date}
         />
-      </div>
+      </button>
     ));
 
     return (
