@@ -3,6 +3,10 @@ import classes from './css/Content.module.css';
 import postData from '../../constants/postData';
 import Post from './ContentPost';
 
+const FILTERS = {
+  DATE: 'date', ALPHABET: 'alphabet', LESS_THAN_10: 'lessThan10', DEF: 'default'
+};
+
 class Content extends React.Component {
   constructor(props) {
     super(props);
@@ -12,41 +16,97 @@ class Content extends React.Component {
       isLessChecked: false,
       copyPostData: [],
       numberSortPostData: [],
-      clickedCard: null,
-      // cursor: 0,
-      // result: []
+      clickedCards: [],
+      selectedCards: [],
+      selectedObjectIndex: [],
+      activeEvent: null,
+      activeFilter: []
     };
     const copyPostData = postData.slice();
     const numberSortPostData = this.sortByPostNumber(copyPostData);
     this.state.copyPostData = copyPostData;
     this.state.numberSortPostData = numberSortPostData;
   }
-  // default sort
 
-  componentDidMount() {
-    const { copyPostData } = this.state;
-    const numberSortPostData = this.sortByPostNumber(copyPostData);
-    this.setState({ numberSortPostData });
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
-  }
-
-  // handleKeyDown(e) {
-  //   const { cursor, result } = this.state;
-  //   // arrow up/down button should select next/previous list element
-  //   if (e.keyCode === 38 && cursor > 0) {
-  //     this.setState(prevState => ({
-  //       cursor: prevState.cursor - 1
-  //     }));
-  //   } else if (e.keyCode === 40 && cursor < result.length - 1) {
-  //     this.setState(prevState => ({
-  //       cursor: prevState.cursor + 1
-  //     }));
-  //   }
+  // componentDidMount() {
+  //   document.addEventListener('keydown', this.handleKeyDown);
   // }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { activeFilter, copyPostData } = this.state;
+    if (prevState.activeFilter !== activeFilter) {
+      let numberSortPostData;
+      switch (activeFilter) {
+        case FILTERS.DEF:
+          numberSortPostData = this.sortByPostNumber(copyPostData);
+          break;
+        case FILTERS.DATE:
+          numberSortPostData = this.sortByIdDate(copyPostData);
+          break; 
+        case FILTERS.ALPHABET:
+          numberSortPostData = this.sortByIdAlphabet(copyPostData);
+          break;
+        case FILTERS.LESS_THAN_10:
+          numberSortPostData = this.sortByLessThan10(copyPostData);
+          break;
+        default:
+          numberSortPostData = copyPostData.slice();
+      }
+      this.setState({ numberSortPostData });
+    }
+  }
+
+  // componentWillUnmount() {
+  //   document.removeEventListener('keydown', this.handleKeyDown);
+  // }
+
+  handleKeyDown = (e) => {
+    const { ctrlKey } = e;
+    if (ctrlKey) {
+      switch (e.keyCode) {
+        case 73: // код клавіші вверх
+          e.preventDefault();
+          console.log('Up key pressed');
+          this.highlightPreviousCard();
+          break;
+        case 75: // код клавіші вниз
+          e.preventDefault();
+          console.log('Down key pressed');
+          this.highlightNextCard();
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  highlightPreviousCard = () => {
+    console.log('previous card');
+    const { selectedObjectIndex } = this.state;
+    const currentIndex = selectedObjectIndex.length > 0 ? selectedObjectIndex[selectedObjectIndex.length - 1] : -1;
+    const previousIndex = currentIndex - 1;
+    if (previousIndex >= 0 && previousIndex < document.querySelectorAll('.layoutsItems').length) {
+      const newSelectedObjectIndex = selectedObjectIndex.filter((id) => id !== currentIndex);
+      this.setState({
+        selectedObjectIndex: [...newSelectedObjectIndex, previousIndex],
+      });
+    }
+  };
+
+  highlightNextCard = () => {
+    console.log('next card');
+    const { selectedObjectIndex } = this.state;
+    const currentIndex = selectedObjectIndex.length > 0 ? selectedObjectIndex[selectedObjectIndex.length - 1] : -1;
+    const nextIndex = currentIndex + 1;
+    if (nextIndex >= 0 && nextIndex < document.querySelectorAll('.layoutsItems').length) {
+      const newSelectedObjectIndex = selectedObjectIndex.filter((id) => id !== currentIndex);
+      this.setState({
+        selectedObjectIndex: [...newSelectedObjectIndex, nextIndex],
+      });
+    }
+  };
+
+  // default sort
 
   sortByPostNumber = (post) => {
     const copyPostData = [...post];
@@ -69,20 +129,20 @@ class Content extends React.Component {
   };
 
   handleCheckboxAlphabetChange = (event) => {
-    const { numberSortPostData, copyPostData } = this.state; 
-    const updatedNumberSortPostData = this.sortByIdAlphabet(numberSortPostData);
+    const { copyPostData } = this.state; 
+    const updatedNumberSortPostData = this.sortByIdAlphabet(copyPostData);
     if (event.target.checked) {
       this.setState({
         isAlphabetChecked: true,
         isDateChecked: false,
         isLessChecked: false,
+        activeFilter: FILTERS.ALPHABET,
         numberSortPostData: updatedNumberSortPostData
       });
     } else {
       this.setState({
         isAlphabetChecked: false,
-        isDateChecked: false,
-        isLessChecked: false,
+        activeFilter: FILTERS.DEF,
         numberSortPostData: this.sortByPostNumber(copyPostData)
       });
     }
@@ -93,20 +153,20 @@ class Content extends React.Component {
   };
 
   handleCheckboxDateChange = (event) => {
-    const { numberSortPostData, copyPostData } = this.state;
-    const updatedNumberSortPostData = this.sortByIdDate(numberSortPostData);
+    const { copyPostData } = this.state;
+    const updatedNumberSortPostData = this.sortByIdDate(copyPostData);
     if (event.target.checked) {
       this.setState({
         isDateChecked: true,
         isAlphabetChecked: false,
         isLessChecked: false,
+        activeFilter: FILTERS.DATE,
         numberSortPostData: updatedNumberSortPostData
       });
     } else {
       this.setState({
         isDateChecked: false,
-        isAlphabetChecked: false,
-        isLessChecked: false,
+        activeFilter: FILTERS.DEF,
         numberSortPostData: this.sortByPostNumber(copyPostData)
       });
     }
@@ -117,21 +177,21 @@ class Content extends React.Component {
     return sortedPostData.slice(0, -10);
   };
 
-  handleCheckboxLessThan10 = (event) => {
-    const { numberSortPostData, copyPostData } = this.state;
-    const updatedNumberSortPostData = this.sortByLessThan10(numberSortPostData);
-    if (event.target.checked) {
+  handleCheckboxLessThan10 = (e) => {
+    const { copyPostData } = this.state;
+    const updatedNumberSortPostData = this.sortByLessThan10(copyPostData);
+    if (e.target.checked) {
       this.setState({
         isLessChecked: true,
         isDateChecked: false,
         isAlphabetChecked: false,
+        activeFilter: FILTERS.LESS_THAN_10,
         numberSortPostData: updatedNumberSortPostData
       });
     } else {
       this.setState({
         isLessChecked: false,
-        isDateChecked: false,
-        isAlphabetChecked: false,
+        activeFilter: FILTERS.DEF,
         numberSortPostData: this.sortByPostNumber(copyPostData)
       });
     }
@@ -139,67 +199,48 @@ class Content extends React.Component {
 
   // Click
 
-  handleCardClick = (key) => {
-    const { clickedCard } = this.state;
-    if (key.order === clickedCard) {
-      this.setState({ clickedCard: null });
+  handleCardClick = (e, post) => {
+    const { clickedCards, selectedCards } = this.state;
+    const clickedIndex = clickedCards.indexOf(post.order);
+    if (clickedIndex !== -1) {
+      // Об'єкт вже був клікнутий, тому його треба видалити
+      this.setState({
+        clickedCards: clickedCards.filter((order) => order !== post.order),
+        selectedCards: selectedCards.filter((id) => id !== post.id)
+      });
     } else {
-      this.setState({ clickedCard: key.order });
+      // Об'єкт ще не був клікнутий, тому його треба додати
+      this.setState({
+        clickedCards: [...clickedCards, post.order],
+        selectedCards: [...selectedCards, post.id]
+      });
     }
   };
-
-  // handleKeyDown = (e) => {
-  //   const { numberSortPostData } = this.state;
-  //   const selectedCard = document.querySelector('.selected');
-  //   if (selectedCard) {
-  //     let nextCard;
-  //     switch (e.key) {
-  //       case 'ArrowLeft':
-  //         nextCard = selectedCard.previousSibling;
-  //         break;
-  //       case 'ArrowRight':
-  //         nextCard = selectedCard.nextSibling;
-  //         break;
-  //       default:
-  //         return;
-  //     }
-  //     if (nextCard) {
-  //       selectedCard.classList.remove('selected');
-  //       nextCard.classList.add('selected');
-  //     }
-  //   } else if (numberSortPostData.length > 0) {
-  //     numberSortPostData[0].ref.current.focus();
-  //     numberSortPostData[0].ref.current.classList.add('selected');
-  //   }
-  // };
 
   // drag and drop
 
   sortPost = (a, b) => {
-    if (a.order > b.order) {
-      return 1;
-    }
-    return -1;
+    return a.order > b.order ? 1 : -1;
   };
 
   dragStartHandler(e, card) {
-    this.setState({ currentCard: card });
+    this.setState({
+      activeEvent: card.order,
+      currentCard: card,
+    });
   }
 
-  dragEndHandler(e) {
-    const eventTarget = e.target;
-    eventTarget.style.background = '';
+  dragEndHandler() {
+    this.setState({ activeEvent: [] });
   }
 
-  dragOverHandler(e) {
-    const eventTarget = e.target;
+  dragOverHandler(e, card) {
     e.preventDefault();
-    eventTarget.style.background = 'gray';
+    this.setState({ activeEvent: card.order });
   }
 
-  dragLeaveHandler(e) {
-    const eventTarget = e.target;
-    eventTarget.style.background = '';
+  dragLeaveHandler() {
+    this.setState({ activeEvent: [] });
   }
 
   dropHandler(e, card) {
@@ -223,7 +264,10 @@ class Content extends React.Component {
       isAlphabetChecked: false,
       currentCard: null,
       copyPostData: updatedCopyPostData,
-      numberSortPostData: updatedNumberSortPostData
+      numberSortPostData: updatedNumberSortPostData,
+      activeEvent: [],
+      clickedCards: [],
+      selectedCards: []
     });
   }
 
@@ -233,17 +277,13 @@ class Content extends React.Component {
       isDateChecked,
       isLessChecked,
       numberSortPostData,
-      clickedCard,
-      id,
-      postRef,
-      massage,
-      image,
-      date
-      // cursor
+      clickedCards,
+      selectedCards,
+      previousIndex,
+      nextIndex,
+      selectedObjectIndex,
+      activeEvent
     } = this.state;
-    const clicked = `${classes.layoutsItems} ${clickedCard ? 'selected' : ''}`;
-    // const isSelected = this.id === this.clickedCard;
-    // const className = `${classes.layoutsItems} ${isSelected ? classes.selected : ''}`;
 
     const newPost = numberSortPostData.map((post) => (
       <button 
@@ -251,19 +291,23 @@ class Content extends React.Component {
         onDragStart={(e) => this.dragStartHandler(e, post)}
         onDragLeave={(e) => this.dragLeaveHandler(e)}
         onDragEnd={(e) => this.dragEndHandler(e)}
-        onDragOver={(e) => this.dragOverHandler(e)}
+        onDragOver={(e) => this.dragOverHandler(e, post)}
         onDrop={(e) => this.dropHandler(e, post)}
-        onClick={this.handleCardClick}
-        // onKeyDown={this.handleKeyDown}
+        onClick={(e) => this.handleCardClick(e, post)}
+        onKeyDown={(e) => this.handleKeyDown(e)}
         draggable
-        className={clicked} 
+        className={`${classes.layoutsItems} 
+        ${clickedCards.includes(post.order) ? classes.selected : ''} 
+        ${selectedCards.includes(post.id) ? classes.selected : ''}
+        ${selectedObjectIndex.includes(previousIndex || nextIndex) && classes.selected}
+        ${activeEvent === post.order ? classes.selected : ''}`}
       >
         <Post
-          id={id}
-          postRef={postRef} 
-          massage={massage} 
-          image={image} 
-          date={date}
+          id={post.id}
+          postRef={post.postRef} 
+          massage={post.massage} 
+          image={post.image} 
+          date={post.date}
         />
       </button>
     ));
