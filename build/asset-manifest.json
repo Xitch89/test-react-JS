@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ReactJS/static/css/main.0a20fcac.css",
-    "main.js": "/ReactJS/static/js/main.6a34db21.js",
+    "main.css": "/ReactJS/static/css/main.3849c74b.css",
+    "main.js": "/ReactJS/static/js/main.ece43dfd.js",
     "static/js/787.28cb0dcd.chunk.js": "/ReactJS/static/js/787.28cb0dcd.chunk.js",
     "static/media/title-image.jpg": "/ReactJS/static/media/title-image.d190f4d6fbf1db3aa5d7.jpg",
     "static/media/bottom_image.jpg": "/ReactJS/static/media/bottom_image.2716269116cc88a047c7.jpg",
@@ -44,12 +44,12 @@
     "static/media/triangle.svg": "/ReactJS/static/media/triangle.3a17b63a0e6030500378d6084b79dbe8.svg",
     "static/media/ruby.svg": "/ReactJS/static/media/ruby.7d50df7ce26bda91a6637c9c5d864746.svg",
     "static/media/square.svg": "/ReactJS/static/media/square.ff7a7b1bc8e2156df33fd2c80aadb190.svg",
-    "main.0a20fcac.css.map": "/ReactJS/static/css/main.0a20fcac.css.map",
-    "main.6a34db21.js.map": "/ReactJS/static/js/main.6a34db21.js.map",
+    "main.3849c74b.css.map": "/ReactJS/static/css/main.3849c74b.css.map",
+    "main.ece43dfd.js.map": "/ReactJS/static/js/main.ece43dfd.js.map",
     "787.28cb0dcd.chunk.js.map": "/ReactJS/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a20fcac.css",
-    "static/js/main.6a34db21.js"
+    "static/css/main.3849c74b.css",
+    "static/js/main.ece43dfd.js"
   ]
 }
