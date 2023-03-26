@@ -1,6 +1,5 @@
 node_modules
 text.txt
 .idea
-build
 .eslintrc.js
 test.js

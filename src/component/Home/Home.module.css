@@ -1,0 +1,10 @@
+.weatherErrorGif {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 15px 0 30px 0;   
+}
+.weatherErrorGif p {
+    font: 300 20px/30px "Old+Standard+TT";
+    color: #e4ddc8;
+}

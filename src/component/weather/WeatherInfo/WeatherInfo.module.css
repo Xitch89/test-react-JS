@@ -1,0 +1,19 @@
+.weatherResult {
+    margin: 0 0 30px 120px;
+}
+
+@media (max-width: 991px) {
+  .weatherResult {
+    margin: 0 0 30px 60px;
+  }
+}
+@media (max-width: 565px) {
+  .weatherResult {
+    margin: 0 0 20px 30px;
+  }
+}
+
+.weatherResult p {
+    font: 400 18px/25px "Old+Standard+TT";
+    color: #e4ddc8;
+}
