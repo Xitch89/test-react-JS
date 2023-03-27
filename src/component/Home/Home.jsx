@@ -10,8 +10,8 @@ import BottomBlock from '../BottomBlock/BottomBlock';
 import SearchWeather from '../weather/SearchWeather/SearchWeather';
 import WeatherInfo from '../weather/WeatherInfo/WeatherInfo';
 import classes from './Home.module.css';
-
-const API_KEY = '7b2c82371fe17f86708068b387c41dfd';
+import withScrollToTop from '../withScrollToTop';
+import { API_KEY } from '../../constants/constants';
 
 class Home extends Component {
   constructor() {
@@ -123,4 +123,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withScrollToTop(Home);

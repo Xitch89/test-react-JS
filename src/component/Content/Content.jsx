@@ -2,10 +2,7 @@ import React from 'react';
 import classes from './css/Content.module.css';
 import postData from '../../constants/postData';
 import Post from './ContentPost';
-
-const FILTERS = {
-  DATE: 'date', ALPHABET: 'alphabet', LESS_THAN_10: 'lessThan10', DEF: 'default'
-};
+import { ARROW_DOWN_KEY_CODE, ARROW_UP_KEY_CODE, FILTERS } from '../../constants/constants';
 
 class Content extends React.Component {
   constructor(props) {
@@ -24,52 +21,45 @@ class Content extends React.Component {
     };
     const copyPostData = postData.slice();
     const numberSortPostData = this.sortByPostNumber(copyPostData);
+    const sortMethods = {
+      [FILTERS.DEF]: this.sortByPostNumber,
+      [FILTERS.DATE]: this.sortByIdDate,
+      [FILTERS.ALPHABET]: this.sortByIdAlphabet,
+      [FILTERS.LESS_THAN_10]: this.sortByLessThan10,
+      [FILTERS.NONE]: (data) => data
+    };
     this.state.copyPostData = copyPostData;
     this.state.numberSortPostData = numberSortPostData;
+    this.state.sortMethods = sortMethods;
   }
 
-  // componentDidMount() {
-  //   document.addEventListener('keydown', this.handleKeyDown);
-  // }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
 
   componentDidUpdate(prevProps, prevState) {
-    const { activeFilter, copyPostData } = this.state;
+    const { activeFilter, copyPostData, sortMethods } = this.state;
     if (prevState.activeFilter !== activeFilter) {
-      let numberSortPostData;
-      switch (activeFilter) {
-        case FILTERS.DEF:
-          numberSortPostData = this.sortByPostNumber(copyPostData);
-          break;
-        case FILTERS.DATE:
-          numberSortPostData = this.sortByIdDate(copyPostData);
-          break; 
-        case FILTERS.ALPHABET:
-          numberSortPostData = this.sortByIdAlphabet(copyPostData);
-          break;
-        case FILTERS.LESS_THAN_10:
-          numberSortPostData = this.sortByLessThan10(copyPostData);
-          break;
-        default:
-          numberSortPostData = copyPostData.slice();
-      }
+      const sortMethod = sortMethods[activeFilter] || sortMethods[FILTERS.NONE];
+      const numberSortPostData = sortMethod(copyPostData.slice());
       this.setState({ numberSortPostData });
     }
   }
 
-  // componentWillUnmount() {
-  //   document.removeEventListener('keydown', this.handleKeyDown);
-  // }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
 
   handleKeyDown = (e) => {
     const { ctrlKey } = e;
     if (ctrlKey) {
       switch (e.keyCode) {
-        case 73: // код клавіші вверх
+        case ARROW_UP_KEY_CODE:
           e.preventDefault();
           console.log('Up key pressed');
           this.highlightPreviousCard();
           break;
-        case 75: // код клавіші вниз
+        case ARROW_DOWN_KEY_CODE:
           e.preventDefault();
           console.log('Down key pressed');
           this.highlightNextCard();
@@ -201,8 +191,7 @@ class Content extends React.Component {
 
   handleCardClick = (e, post) => {
     const { clickedCards, selectedCards } = this.state;
-    const clickedIndex = clickedCards.indexOf(post.order);
-    if (clickedIndex !== -1) {
+    if (clickedCards.includes(post.order)) {
       // Об'єкт вже був клікнутий, тому його треба видалити
       this.setState({
         clickedCards: clickedCards.filter((order) => order !== post.order),
@@ -245,8 +234,6 @@ class Content extends React.Component {
 
   dropHandler(e, card) {
     const { currentCard, copyPostData } = this.state;
-    const eventTarget = e.target;
-    eventTarget.style.background = '';
     e.preventDefault();
     const updatedCopyPostData = copyPostData.map((c) => {
       if (c.order === card.order) {
