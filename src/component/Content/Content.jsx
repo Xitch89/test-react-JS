@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './css/Content.module.css';
 import postData from '../../constants/postData';
 import Post from './ContentPost';
-import { ARROW_DOWN_KEY_CODE, ARROW_UP_KEY_CODE, FILTERS } from '../../constants/constants';
+import { ARROW_UP_KEY_CODE, ARROW_DOWN_KEY_CODE, FILTERS } from '../../constants/constants';
 
 class Content extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class Content extends React.Component {
       numberSortPostData: [],
       clickedCards: [],
       selectedCards: [],
-      selectedObjectIndex: [],
       activeEvent: null,
       activeFilter: []
     };
@@ -33,9 +32,9 @@ class Content extends React.Component {
     this.state.sortMethods = sortMethods;
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
+  // componentDidMount() {
+  //   document.addEventListener('keydown', this.handleKeyDown);
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     const { activeFilter, copyPostData, sortMethods } = this.state;
@@ -46,52 +45,30 @@ class Content extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener('keydown', this.handleKeyDown);
+  // }
 
-  handleKeyDown = (e) => {
-    const { ctrlKey } = e;
-    if (ctrlKey) {
-      switch (e.keyCode) {
-        case ARROW_UP_KEY_CODE:
-          e.preventDefault();
-          console.log('Up key pressed');
-          this.highlightPreviousCard();
-          break;
-        case ARROW_DOWN_KEY_CODE:
-          e.preventDefault();
-          console.log('Down key pressed');
-          this.highlightNextCard();
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
-  highlightPreviousCard = () => {
-    console.log('previous card');
-    const { selectedObjectIndex } = this.state;
-    const currentIndex = selectedObjectIndex.length > 0 ? selectedObjectIndex[selectedObjectIndex.length - 1] : -1;
-    const previousIndex = currentIndex - 1;
-    if (previousIndex >= 0 && previousIndex < document.querySelectorAll('.layoutsItems').length) {
-      const newSelectedObjectIndex = selectedObjectIndex.filter((id) => id !== currentIndex);
-      this.setState({
-        selectedObjectIndex: [...newSelectedObjectIndex, previousIndex],
+  handleKeyDown = (event) => {
+    const { selectedCards, numberSortPostData } = this.state;
+    const keyCode = event.keyCode || event.which;
+    const ctrlKey = event.ctrlKey || event.metaKey; // for Mac
+    const isK = keyCode === ARROW_UP_KEY_CODE;
+    const isM = keyCode === ARROW_DOWN_KEY_CODE;
+    if (ctrlKey && (isK || isM)) {
+      event.preventDefault(); // prevent default behavior of the browser (e.g. scrolling)
+      const increment = isK ? 1 : -1;
+      const newSelectedCards = selectedCards.map((id) => {
+        let index = numberSortPostData.findIndex((post) => post.id === id);
+        if (index === -1) return id;
+        index += increment;
+        if (index < 0) index = numberSortPostData.length - 1;
+        else if (index >= numberSortPostData.length) index = 0;
+        return numberSortPostData[index].id;
       });
-    }
-  };
-
-  highlightNextCard = () => {
-    console.log('next card');
-    const { selectedObjectIndex } = this.state;
-    const currentIndex = selectedObjectIndex.length > 0 ? selectedObjectIndex[selectedObjectIndex.length - 1] : -1;
-    const nextIndex = currentIndex + 1;
-    if (nextIndex >= 0 && nextIndex < document.querySelectorAll('.layoutsItems').length) {
-      const newSelectedObjectIndex = selectedObjectIndex.filter((id) => id !== currentIndex);
-      this.setState({
-        selectedObjectIndex: [...newSelectedObjectIndex, nextIndex],
+      this.setState({ 
+        selectedCards: newSelectedCards,
+        clickedCards: newSelectedCards 
       });
     }
   };
@@ -192,13 +169,11 @@ class Content extends React.Component {
   handleCardClick = (e, post) => {
     const { clickedCards, selectedCards } = this.state;
     if (clickedCards.includes(post.order)) {
-      // Об'єкт вже був клікнутий, тому його треба видалити
       this.setState({
         clickedCards: clickedCards.filter((order) => order !== post.order),
         selectedCards: selectedCards.filter((id) => id !== post.id)
       });
     } else {
-      // Об'єкт ще не був клікнутий, тому його треба додати
       this.setState({
         clickedCards: [...clickedCards, post.order],
         selectedCards: [...selectedCards, post.id]
@@ -208,9 +183,7 @@ class Content extends React.Component {
 
   // drag and drop
 
-  sortPost = (a, b) => {
-    return a.order > b.order ? 1 : -1;
-  };
+  sortPost = ((a, b) => a.order - b.order);
 
   dragStartHandler(e, card) {
     this.setState({
@@ -266,9 +239,6 @@ class Content extends React.Component {
       numberSortPostData,
       clickedCards,
       selectedCards,
-      previousIndex,
-      nextIndex,
-      selectedObjectIndex,
       activeEvent
     } = this.state;
 
@@ -286,7 +256,6 @@ class Content extends React.Component {
         className={`${classes.layoutsItems} 
         ${clickedCards.includes(post.order) ? classes.selected : ''} 
         ${selectedCards.includes(post.id) ? classes.selected : ''}
-        ${selectedObjectIndex.includes(previousIndex || nextIndex) && classes.selected}
         ${activeEvent === post.order ? classes.selected : ''}`}
       >
         <Post

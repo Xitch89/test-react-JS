@@ -22,77 +22,77 @@ import StyleGuide from '../assets/images/style_guide.png';
 
 const postData = [
   {
-    postRef: 'landing-vr2', massage: 'Landing vr.2', image: LandingVr2, date: '11.03.2023', id: 2, order: 2 
+    postRef: 'landing-vr1', massage: 'Landing vr.1', image: LandingVr1, date: '10.03.2023', id: 0, order: 0
   },
   {
-    postRef: 'landing-vr1', massage: 'Landing vr.1', image: LandingVr1, date: '10.03.2023', id: 1, order: 1
+    postRef: 'landing-vr2', massage: 'Landing vr.2', image: LandingVr2, date: '11.03.2023', id: 1, order: 1 
   },
   {
-    postRef: 'landing-vr3', massage: 'Landing vr.3', image: LandingVr3, date: '12.03.2023', id: 3, order: 3
+    postRef: 'landing-vr3', massage: 'Landing vr.3', image: LandingVr3, date: '12.03.2023', id: 2, order: 2
   },
   {
-    postRef: 'portfolio1', massage: 'Portfolio 1', image: Portfolio1, date: '08.02.2022', id: 4, order: 4
+    postRef: 'portfolio1', massage: 'Portfolio 1', image: Portfolio1, date: '08.02.2022', id: 3, order: 3
   },
   {
-    postRef: 'portfolio2', massage: 'Portfolio 1', image: Portfolio2, date: '27.11.2023', id: 5, order: 5 
+    postRef: 'portfolio2', massage: 'Portfolio 1', image: Portfolio2, date: '27.11.2023', id: 4, order: 4 
   },
   {
-    postRef: 'portfolio3', massage: 'Portfolio 1', image: Portfolio3, date: '24.03.2023', id: 6, order: 6
+    postRef: 'portfolio3', massage: 'Portfolio 1', image: Portfolio3, date: '24.03.2023', id: 5, order: 5
   },
   {
-    postRef: 'portfolio4', massage: 'Portfolio 1', image: Portfolio4, date: '22.03.2023', id: 7, order: 7
+    postRef: 'portfolio4', massage: 'Portfolio 1', image: Portfolio4, date: '22.03.2023', id: 6, order: 6
   },
   {
-    postRef: 'single', massage: 'Single Project', image: SingleProject, date: '22.03.2023', id: 8, order: 8
+    postRef: 'single', massage: 'Single Project', image: SingleProject, date: '22.03.2023', id: 7, order: 7
   },
   {
-    postRef: 'about_company', massage: 'About Company', image: AboutCompany, date: '22.03.2023', id: 9, order: 9
+    postRef: 'about_company', massage: 'About Company', image: AboutCompany, date: '22.03.2023', id: 8, order: 8
   },
   {
-    postRef: 'about_team', massage: 'About TEam', image: AboutTeam, date: '22.03.2023', id: 10, order: 10
+    postRef: 'about_team', massage: 'About TEam', image: AboutTeam, date: '22.03.2023', id: 9, order: 9
   },
   {
     postRef: 'single_team', 
     massage: 'Single Team Member', 
     image: SingleTeamMember, 
     date: '22.03.2023', 
-    id: 11, 
-    order: 11
+    id: 10, 
+    order: 10
   },
   {
-    postRef: 'faq_page', massage: 'FAQ Page', image: FaqPage, date: '22.03.2023', id: 12, order: 12 
+    postRef: 'faq_page', massage: 'FAQ Page', image: FaqPage, date: '22.03.2023', id: 11, order: 11 
   },
   {
-    postRef: 'contact_us', massage: 'Contact Us', image: ContactUs, date: '22.03.2023', id: 13, order: 13 
+    postRef: 'contact_us', massage: 'Contact Us', image: ContactUs, date: '22.03.2023', id: 12, order: 12 
   },
   {
-    postRef: 'blog1', massage: 'Blog 1', image: Blog1, date: '22.03.2023', id: 14, order: 14 
+    postRef: 'blog1', massage: 'Blog 1', image: Blog1, date: '22.03.2023', id: 13, order: 13 
   },
   {
-    postRef: 'blog2', massage: 'Blog 2', image: Blog2, date: '22.03.2023', id: 15, order: 15 
+    postRef: 'blog2', massage: 'Blog 2', image: Blog2, date: '22.03.2023', id: 14, order: 14 
   },
   {
-    postRef: 'blog3', massage: 'Blog 3', image: Blog3, date: '22.03.2023', id: 16, order: 16 
+    postRef: 'blog3', massage: 'Blog 3', image: Blog3, date: '22.03.2023', id: 15, order: 15 
   },
   {
     postRef: 'blog_categories', 
     massage: 'Blog Categories', 
     image: BlogCategories, 
     date: '22.03.2023', 
-    id: 17, 
-    order: 17 
+    id: 16, 
+    order: 16 
   },
   {
-    postRef: 'single_blog', massage: 'Single Blog', image: SingleBlog, date: '22.03.2023', id: 18, order: 18 
+    postRef: 'single_blog', massage: 'Single Blog', image: SingleBlog, date: '22.03.2023', id: 17, order: 17 
   },
   {
-    postRef: 'pricing', massage: 'Pricing', image: Pricing, date: '22.03.2023', id: 19, order: 19 
+    postRef: 'pricing', massage: 'Pricing', image: Pricing, date: '22.03.2023', id: 18, order: 18 
   },
   {
-    postRef: 'style_guide', massage: 'Style guide', image: StyleGuide, date: '22.03.2023', id: 20, order: 20 
+    postRef: 'style_guide', massage: 'Style guide', image: StyleGuide, date: '22.03.2023', id: 19, order: 19 
   },
   {
-    postRef: 'licenses', massage: 'Licenses', image: Licenses, date: '22.03.2023', id: 21, order: 21 
+    postRef: 'licenses', massage: 'Licenses', image: Licenses, date: '22.03.2023', id: 20, order: 20 
   }
 ];
 

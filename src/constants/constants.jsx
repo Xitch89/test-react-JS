@@ -1,5 +1,5 @@
-export const ARROW_UP_KEY_CODE = 73;
-export const ARROW_DOWN_KEY_CODE = 75;
+export const ARROW_DOWN_KEY_CODE = 77;
+export const ARROW_UP_KEY_CODE = 75;
 export const FILTERS = {
   DATE: 'date', ALPHABET: 'alphabet', LESS_THAN_10: 'lessThan10', DEF: 'default'
 };
