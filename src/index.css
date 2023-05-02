@@ -95,6 +95,14 @@ h6 {
   font-weight: 400;
 }
 
+#dark {
+    background: #181511;
+}
+
+#light {
+    background: #f6e192f8;
+}
+
 /*flax-box*/
 /*flex-gride*/
 /*media*/

@@ -1,3 +1,12 @@
+:root {
+  --core-light-color: #000000;
+  --core-dark-color: #aca592;
+  --yellow-color: #ffae2b;
+  --text-font: 400 50px/60px "Old+Standard+TT";
+  --core-font: 400 12px/22px "Old+Standard+TT";
+}
+
+/* Стилі макетів */
 .exampleLayouts {
   display: flex;
   flex-direction: column;
@@ -5,36 +14,60 @@
   align-items: center;
   justify-content: center;
 }
-.exampleLayouts_core {
+
+.exampleLayouts_coreDark,
+.exampleLayouts_coreLight {
   letter-spacing: 2px;
   text-transform: uppercase;
-  font: 400 12px/22px "Old+Standard+TT";
-  color: #aca592;
+  font: var(--core-font);
   margin: 120px 0 10px 0;
 }
+
+.exampleLayouts_coreDark {
+  color: var(--core-dark-color);
+}
+
+.exampleLayouts_coreLight {
+  color: var(--core-light-color);
+}
+
 @media (max-width: 400px) {
   .exampleLayouts_core {
     margin: 60px 0 10px 0;
   }
 }
+
 @media (max-width: 320px) {
   .exampleLayouts_core {
     margin: 35px 0 10px 0;
   }
 }
 
-.bigYellowText {
-  font: 400 50px/60px "Old+Standard+TT";
-  color: #ffae2b;
+/* Стилі текстів */
+.bigYellowTextLight,
+.bigYellowTextDark {
+  font: var(--text-font);
   margin-bottom: 60px;
 }
+
+.bigYellowTextLight {
+  color: var(--core-light-color);
+}
+
+.bigYellowTextDark {
+  color: var(--yellow-color);
+}
+
 @media (max-width: 400px) {
-  .bigYellowText {
+  .bigYellowTextLight,
+  .bigYellowTextDark {
     font: 300 30px/40px "Old+Standard+TT";
   }
 }
+
 @media (max-width: 320px) {
-  .bigYellowText {
+  .bigYellowTextLight,
+  .bigYellowTextDark {
     margin-bottom: 35px;
   }
 }

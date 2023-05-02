@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
   createHashRouter, createRoutesFromElements, Route, RouterProvider 
 } from 'react-router-dom';
@@ -21,12 +21,10 @@ const router = createHashRouter(
   )
 );
 
-class App extends Component {
-  render() {
-    return (
-      <RouterProvider router={router} />
-    );
-  }
+function App() {
+  return (
+    <RouterProvider router={router} />
+  );
 }
 
 export default App;

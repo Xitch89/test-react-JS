@@ -1,47 +1,80 @@
-.footer {
-  border-top: 1px solid #4b4136;
-  margin: 0 120px 0 120px;
+:root {
+  --footer-bg-color: #4b4136;
+  --footer-text-color-dark: #ffae2b;
+  --footer-text-color-light: #000000;
+  --footer-text-hover-color: #00ffc8;
+  --footer-gray-text-color: #aca592;
 }
+
+.footerDark,
+.footerLight {
+  border-top: 1px solid var(--footer-bg-color);
+  margin: 0 120px;
+}
+
 @media (max-width: 991px) {
   .footer {
-    margin: 0 60px 0 60px;
+    margin: 0 60px;
   }
 }
+
 @media (max-width: 565px) {
   .footer {
-    margin: 0 30px 0 30px;
+    margin: 0 30px;
   }
 }
+
 @media (max-width: 320px) {
   .footer {
-    margin: 0 15px 0 15px;
+    margin: 0 15px;
   }
 }
-.footer a {
+
+.footerDark a,
+.footerLight a {
   font: 400 12px/30px "Old+Standard+TT";
-  color: #ffae2b;
   margin-left: 5px;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   transition: 0.2s;
 }
-.footer a:hover {
-  color: #00ffc8;
+
+.footerDark a {
+  color: var(--footer-text-color-dark);
 }
+
+.footerDark a:hover {
+  color: var(--footer-text-hover-color);
+}
+
+.footerLight a {
+  color: var(--footer-text-color-light);
+}
+
+.footerLight a:hover {
+  color: var(--footer-text-color-dark);
+}
+
 .footer_container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: #181511;
-  color: #aca592;
+  font: 400 14px/18px "Old+Standard+TT";
   height: 80px;
 }
-.footer_container p {
+
+.footer_grayTextDark,
+.footer_grayTextLight {
   font: 400 14px/18px "Old+Standard+TT";
-  color: #aca592;
+  color: var(--footer-gray-text-color);
 }
+
+.footer_grayTextLight {
+  color: var(--footer-text-color-light);
+}
+
 .footer_powered {
   display: flex;
   flex-direction: row;
@@ -49,8 +82,9 @@
   align-items: center;
   justify-content: center;
 }
+
 .footer_rightRefBorder {
-  border-left: 1px solid #4b4136;
-  border-right: 1px solid #4b4136;
-  padding: 0 5px 0 5px;
+  border-left: 1px solid var(--footer-bg-color);
+  border-right: 1px solid var(--footer-bg-color);
+  padding: 0 5px;
 }

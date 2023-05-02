@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
 import classes from './css/ourServicesPost.module.css';
+import { ThemeContext } from '../Layout';
 
 function PostOurServices({ 
   upperSvg, lowerSvg, grayTextBig, grayTextSmall 
 }) {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div>
       <div className={classes.ourServices_items}>
@@ -14,11 +17,18 @@ function PostOurServices({
         <div>
           {lowerSvg}
         </div>
-        <p className={classes.ourServices_yellowText}>Web Design</p>
-        <p className={classes.ourServices_grayText}>
+        <p 
+          className={theme === 'light' ? classes.ourServices_yellowTextLight : classes.ourServices_yellowTextDark}
+        >
+          Web Design
+
+        </p>
+        <p className={theme === 'light' ? classes.ourServices_grayTextLight : classes.ourServices_grayTextDark}>
           {grayTextBig}
         </p>
-        <p className={classes.ourServices_graySmallText}>
+        <p 
+          className={theme === 'light' ? classes.ourServices_graySmallTextLight : classes.ourServices_graySmallTextDark}
+        >
           {grayTextSmall}
         </p>
       </div>

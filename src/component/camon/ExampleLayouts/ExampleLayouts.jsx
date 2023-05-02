@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classes from './ExampleLayouts.module.css';
+import { ThemeContext } from '../../Layout';
 
 function ExampleLayouts({ grayText, yellowText }) {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className={classes.exampleLayouts}>
-      <p className={classes.exampleLayouts_core}>{grayText}</p>
-      <p className={classes.bigYellowText}>{yellowText}</p>
+      <p 
+        className={theme === 'light' ? classes.exampleLayouts_coreLight : classes.exampleLayouts_coreDark}
+      >
+        {grayText}
+      </p>
+      <p className={theme === 'light' ? classes.bigYellowTextLight : classes.bigYellowTextDark}>{yellowText}</p>
     </div>
   );
 }

@@ -1,3 +1,10 @@
+:root {
+  --yellow: #ffae2b;
+  --black: #000000;
+  --border-color: #4b4136;
+  --green: #00ffc8;
+  --followSoc-bg-color: #786740;
+}
 .followSocial {
   display: flex;
   flex-direction: column;
@@ -6,8 +13,8 @@
   justify-content: center;
 }
 .followSocial_items {
-  border-top: 1px solid #4b4136;
-  border-bottom: 1px solid #4b4136;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 20px;
 }
 .followSocial_items_vectorImg {
@@ -50,7 +57,7 @@
 }
 @media (max-width: 400px) {
   .followSocial_items_followMe {
-    border-bottom: 1px solid #4b4136;
+    border-bottom: 1px solid var(--border-color);
   }
 }
 @media (max-width: 320px) {
@@ -86,28 +93,39 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.followSocial_yellowText {
+.followSocial_yellowTextLight,
+.followSocial_yellowTextDark {
   font: 400 40px/50px "Old+Standard+TT";
-  color: #ffae2b;
+  color: var(--yellow);
   padding: 61px 50px 40px 50px;
 }
+.followSocial_yellowTextLight {
+  color: var(--black);
+}
+.followSocial_yellowTextDark {
+  color: var(--yellow);
+}
 @media (max-width: 991px) {
-  .followSocial_yellowText {
+  .followSocial_yellowTextLight,
+  .followSocial_yellowTextDark {
     padding: 45px 50px 40px 50px;
   }
 }
 @media (max-width: 767px) {
-  .followSocial_yellowText {
+  .followSocial_yellowTextLight,
+  .followSocial_yellowTextDark {
     padding-top: 80px;
   }
 }
 @media (max-width: 565px) {
-  .followSocial_yellowText {
+  .followSocial_yellowTextLight,
+  .followSocial_yellowTextDark {
     padding-top: 20px;
   }
 }
 @media (max-width: 400px) {
-  .followSocial_yellowText {
+  .followSocial_yellowTextLight,
+  .followSocial_yellowTextDark {
     font: 300 30px/35px "Old+Standard+TT";
   }
 }
@@ -119,13 +137,13 @@
   align-items: center;
   justify-content: center;
   font: 400 15px/35px "Old+Standard+TT";
-  color: #181511;
+  color: var(--black);
   box-sizing: border-box;
   width: 143px;
   height: 50px;
   margin-left: 45px;
-  background: #ffae2b;
-  border: 1px solid #ffae2b;
+  background: var(--yellow);
+  border: 1px solid var(--yellow);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -134,9 +152,9 @@
   transition: 0.4s;
 }
 .followSocial_linkInsta:hover {
-  border: 1px solid #00ffc8;
-  color: #00ffc8;
-  background: #786740;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: var(----followSoc-bg-color-followSoc);
 }
 @media (max-width: 565px) {
   .followSocial_linkInsta {

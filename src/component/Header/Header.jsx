@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ReactSwitch from 'react-switch';
 import classes from './Header.module.css';
 
-function Header() {
+function Header({ toggleTheme, theme }) {
   return (
     <div className={classes.wrapper}>
       <header>
@@ -48,6 +50,15 @@ function Header() {
             </ul>
           </nav>
         </div>
+        <div className={classes.themeMode}>
+          <label 
+            htmlFor="switchMode" 
+            className={classes.switchLabel}
+          >
+            {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+          </label>
+          <ReactSwitch id="switchMode" onChange={toggleTheme} checked={theme === 'dark'} />
+        </div>
         <Link className={classes.transparent_header_buyTemplate} to="404">
           Buy Template
         </Link>
@@ -55,5 +66,13 @@ function Header() {
     </div>
   );
 }
+
+Header.propTypes = {
+  toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string,
+};
+Header.defaultProps = {
+  theme: 'dark',
+};
 
 export default Header;

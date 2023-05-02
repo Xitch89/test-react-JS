@@ -240,3 +240,16 @@ ul {
     transform: scaleX(1);
   }
 }
+
+.themeMode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 22%;
+}
+
+.switchLabel {
+  font: 400 12x/20px "Old+Standard+TT";
+  color: #ffae2b;
+  margin-right: 20px;
+}

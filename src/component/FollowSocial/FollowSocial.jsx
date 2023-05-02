@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './FollowSocial.module.css';
 // images
 import SocImg from '../../assets/images/soc_img.jpg';
@@ -7,8 +7,11 @@ import SocImg4 from '../../assets/images/soc_img4.jpg';
 import SocImg3 from '../../assets/images/soc_img3.jpg';
 import { ReactComponent as InstaImg } from '../../assets/icons/insta-img.svg';
 import RefButton from '../camon/RefButton';
+import { ThemeContext } from '../Layout';
 
 function FollowSocial() {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className={classes.followSocial_container}>
       <div className={classes.followSocial_wrapper}>
@@ -33,7 +36,12 @@ function FollowSocial() {
           />
         </div>
         <div className={classes.followSocial_items_followMe}>
-          <p className={classes.followSocial_yellowText}>Follow me on</p>
+          <p 
+            className={theme === 'light' ? classes.followSocial_yellowTextLight : classes.followSocial_yellowTextDark}
+          >
+            Follow me on
+
+          </p>
           <RefButton classLink={classes.followSocial_linkInsta} linkText="Instagram" />
         </div>
         <div className={classes.followSocial_items}>

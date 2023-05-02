@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import classes from './css/Content.module.css';
 import postData from '../../constants/postData';
 import Post from './ContentPost';
 import { ARROW_UP_KEY_CODE, ARROW_DOWN_KEY_CODE } from '../../constants/constants';
+import { ThemeContext } from '../Layout';
 // 
 function Content() {
   const [isDateChecked, setIsDateChecked] = useState(false);
@@ -14,6 +15,7 @@ function Content() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [currentCard, setCurrentCard] = useState([]);
   const [activeEvent, setActiveEvent] = useState([]);
+  const { theme } = useContext(ThemeContext);
 
   const handleKeyDown = (e) => {
     const keyCode = e.keyCode || e.which;
@@ -32,7 +34,7 @@ function Content() {
         return numberSortPostData[index].id;
       });
       setSelectedCards(newSelectedCards);
-      setClickedCards(newSelectedCards); 
+      setClickedCards(newSelectedCards);
     }
   };
 
@@ -170,13 +172,6 @@ function Content() {
     setNumberSortPostData(NewNumberSortPostData);
   }, []);
 
-  // useEffect(() => {
-  //   document.addEventListener('keydown', handleKeyDown);
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // });
-
   const newPost = numberSortPostData.map((post) => (
     <button 
       type="button"
@@ -206,7 +201,10 @@ function Content() {
   return (
     <div>
       <div className={classes.checkBox}>
-        <label htmlFor="alphabet" className={classes.checkBoxContainer}>
+        <label 
+          htmlFor="alphabet" 
+          className={theme === 'light' ? classes.checkBoxContainerLight : classes.checkBoxContainerDark}
+        >
           <input
             id="alphabet" 
             type="checkbox" 
@@ -216,7 +214,10 @@ function Content() {
           Filter by alphabet
           <span className={classes.checkmark} />
         </label>
-        <label htmlFor="checkboxDate" className={classes.checkBoxContainer}>
+        <label 
+          htmlFor="checkboxDate" 
+          className={theme === 'light' ? classes.checkBoxContainerLight : classes.checkBoxContainerDark}
+        >
           <input
             id="checkboxDate" 
             type="checkbox" 
@@ -226,7 +227,10 @@ function Content() {
           Filter by post date
           <span className={classes.checkmark} />
         </label> 
-        <label htmlFor="lessThan10" className={classes.checkBoxContainer}>
+        <label 
+          htmlFor="lessThan10" 
+          className={theme === 'light' ? classes.checkBoxContainerLight : classes.checkBoxContainerDark}
+        >
           <input
             id="lessThan10" 
             type="checkbox" 

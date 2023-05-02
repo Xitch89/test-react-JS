@@ -6,35 +6,36 @@
   width: 40px;
   height: 40px;
 }
-
-.ourServices_yellowText {
+.ourServices_yellowTextLight,
+.ourServices_yellowTextDark {
   font: 400 24px/34px "Old+Standard+TT";
-  color: #ffae2b;
   padding: 20px 0 10px 61px;
 }
-.ourServices_grayText {
+.ourServices_yellowTextLight {
+  color: #000000;
+}
+.ourServices_yellowTextDark {
+  color: #ffae2b;
+}
+.ourServices_grayTextLight,
+.ourServices_grayTextDark {
   font: 400 15px/26px "Old+Standard+TT";
-  color: #aca592;
   padding: 0 0 5px 61px;
 }
-.ourServices_graySmallText {
-  font: 400 11px/26px "Old+Standard+TT";
+.ourServices_grayTextLight {
+  color: #000000;
+}
+.ourServices_grayTextDark {
   color: #aca592;
+}
+.ourServices_graySmallTextLight,
+.ourServices_graySmallTextDark {
+  font: 400 11px/26px "Old+Standard+TT";
   padding: 0 117px 76px 61px;
 }
-
-.bigYellowText {
-  font: 400 50px/60px "Old+Standard+TT";
-  color: #ffae2b;
-  margin-bottom: 60px;
+.ourServices_graySmallTextLight {
+  color: #000000;
 }
-@media (max-width: 400px) {
-  .bigYellowText {
-    font: 300 30px/40px "Old+Standard+TT";
-  }
-}
-@media (max-width: 320px) {
-  .bigYellowText {
-    margin-bottom: 35px;
-  }
+.ourServices_graySmallTextDark {
+  color: #aca592;
 }
