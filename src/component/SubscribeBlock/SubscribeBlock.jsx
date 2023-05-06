@@ -1,32 +1,32 @@
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './SubscribeBlock.module.css';
 import { ThemeContext } from '../Layout';
 
 function SubscribeBlock() {
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   return (
     <div className={classes.subscribeBlock}>
       <p 
         className={theme === 'light' ? classes.subscribeBlock_YellowTextLight : classes.subscribeBlock_YellowTextDark}
       >
-        Subscribe to Atelier 
+        {t('subscribeToAtelier')}
         <br />
-        Newsletter
+        {t('newsletter')}
       </p>
       <p className={theme === 'light' ? classes.subscribeBlock_someTextLight : classes.subscribeBlock_someTextDark}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        varius enim in eros elementum tristique.
+        {t('newsletterText')}
       </p>
       <form className={classes.subscribe} action="#" method="post">
         <input type="email" required />
         <button className={classes.subscribe_button} type="submit">
-          “Subscribe”
+          {t('subscribeButton')}
         </button>
       </form>
       <p className={theme === 'light' ? classes.sub_expl_btnLight : classes.sub_expl_btnDark}>
-        * By clicking button, you agree to our terms and that you have read
-        our terms
+        {t('termsAgreement')}
       </p>
     </div>
   );

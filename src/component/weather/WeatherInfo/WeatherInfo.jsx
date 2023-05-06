@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import classes from './WeatherInfo.module.css';
+import { ThemeContext } from '../../Layout';
 
 function WeatherInfo({
   humidity, city, temp, wind, error 
 }) {
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className={classes.weatherResult}>
+    <div className={theme === 'light' ? classes.weatherResultLight : classes.weatherResultDark}>
       { city && (
       <div>
         <p>
-          City:
+          {t('city')}
           {' '}
           {city}
         </p>
         <p>
-          Temp:
+          {t('temp')}
           {' '}
           {temp} 
           °C
         </p>
         <p>
-          Wind:
+          {t('wind')}
           {' '}
           {wind}
         </p>
         <p>
-          Humidity:
+          {t('humidity')}
           {' '} 
           {humidity}
         </p>

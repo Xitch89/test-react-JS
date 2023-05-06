@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classes from './SearchWeather.module.css';
 
 function SearchWeather({ weatherMethod }) {
+  const { t } = useTranslation();
   return (
     <div className={classes.formWrapper}>
       <img 
@@ -11,8 +13,10 @@ function SearchWeather({ weatherMethod }) {
         alt="gif 404" 
       />
       <form className={classes.weatherForm} onSubmit={weatherMethod}>
-        <input type="text" name="city" placeholder="Enter you city" />
-        <button className={classes.weatherForm_button} type="submit"> Submit </button>
+        <input type="text" name="city" placeholder={t('enterCity')} />
+        <button className={classes.weatherForm_button} type="submit"> 
+          {t('search')}
+        </button>
       </form>
     </div>
   );

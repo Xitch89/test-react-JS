@@ -11,27 +11,21 @@ const ourServicesDate = [
     lowerSvg: <Triangle style={{ 
       position: 'relative', left: '58px', top: '-21px' 
     }} 
-    />,
-    grayTextBig: 'Suspendisse varius enim in',
-    grayTextSmall: 'cursus id rutrum imperdiet. eros elementum tristique.',
+    />
   },
   { 
     upperSvg: <Hemisphere style={{ position: 'relative', margin: '60px 0 0 61px', zIndex: '1' }} />,
     lowerSvg: <Hemisphere2 style={{ 
       position: 'relative', left: '80px', top: '-45px' 
     }} 
-    />, 
-    grayTextBig: 'Suspendisse varius enim in',
-    grayTextSmall: 'cursus id rutrum imperdiet. eros elementum tristique.',
+    />
   },
   { 
     upperSvg: <Ruby style={{ margin: '60px 0 0 61px' }} />,
     lowerSvg: <Circle style={{
       position: 'relative', left: '63px', top: '-30px' 
     }} 
-    />,
-    grayTextBig: 'Suspendisse varius enim in',
-    grayTextSmall: 'cursus id rutrum imperdiet. eros elementum tristique.',
+    />
   }
 ];
 

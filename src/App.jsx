@@ -8,6 +8,7 @@ import ErrorPage from './component/ErrorPage/ErrorPage';
 import Landing1 from './component/DetailedPage/LandingVr1';
 import Landing2 from './component/DetailedPage/LandingVr2';
 import Landing3 from './component/DetailedPage/LandingVr3';
+import './i18n';
 
 const router = createHashRouter(
   createRoutesFromElements(

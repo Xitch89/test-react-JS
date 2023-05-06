@@ -67,7 +67,7 @@ ul {
   justify-content: center;
   font: 400 11px/22px "Old+Standard+TT";
   color: #ffae2b;
-  margin-right: 120px;
+  margin-right: 40;
   box-sizing: border-box;
   width: 147px;
   height: 52px;
@@ -252,4 +252,14 @@ ul {
   font: 400 12x/20px "Old+Standard+TT";
   color: #ffae2b;
   margin-right: 20px;
+}
+
+.leng {
+  font: 400 12x/20px "Old+Standard+TT";
+  color: #000000;
+  background-color: #ffae2b;
+  border-radius: 11px;
+  margin-right: 40px;
+  width: 24px;
+  height: 24px;
 }

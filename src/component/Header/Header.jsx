@@ -2,9 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ReactSwitch from 'react-switch';
+import { useTranslation } from 'react-i18next';
 import classes from './Header.module.css';
 
 function Header({ toggleTheme, theme }) {
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
+  };
   return (
     <div className={classes.wrapper}>
       <header>
@@ -19,32 +25,32 @@ function Header({ toggleTheme, theme }) {
             <ul className={classes.navList}>
               <li>
                 <Link className={classes.transparent_header_logo} to="/">
-                  Atelier.
+                  {t('atelier')}
                 </Link>
               </li>
               <li>
                 <Link className={classes.transparent_header_overview} to="404">
-                  Overview
+                  {t('overview')}
                 </Link>
               </li>
               <li>
                 <Link className={classes.transparent_header_other} to="404">
-                  Pages
+                  {t('pages')}
                 </Link>
               </li>
               <li>
                 <Link className={classes.transparent_header_other} to="404">
-                  Portfolio
+                  {t('portfolio')}
                 </Link>
               </li>
               <li>
                 <Link className={classes.transparent_header_other} to="404">
-                  Template
+                  {t('template')}
                 </Link>
               </li>
               <li>
                 <Link className={classes.transparent_header_other} to="404">
-                  Contact
+                  {t('contact')}
                 </Link>
               </li>
             </ul>
@@ -55,13 +61,21 @@ function Header({ toggleTheme, theme }) {
             htmlFor="switchMode" 
             className={classes.switchLabel}
           >
-            {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+            {theme === 'dark' ? t('darkMode') : t('lightMode')}
           </label>
           <ReactSwitch id="switchMode" onChange={toggleTheme} checked={theme === 'dark'} />
         </div>
         <Link className={classes.transparent_header_buyTemplate} to="404">
-          Buy Template
+          {t('buyTemplate')}
         </Link>
+        <button 
+          key={i18n.language} 
+          type="button" 
+          className={classes.leng} 
+          onClick={() => changeLanguage(i18n.language === 'en' ? 'ua' : 'en')}
+        >
+          {i18n.language.toUpperCase()}
+        </button>
       </header>
     </div>
   );

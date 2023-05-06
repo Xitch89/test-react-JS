@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import classes from './css/ourServicesPost.module.css';
 import { ThemeContext } from '../Layout';
 
 function PostOurServices({ 
-  upperSvg, lowerSvg, grayTextBig, grayTextSmall 
+  upperSvg, lowerSvg, 
 }) {
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -20,16 +22,16 @@ function PostOurServices({
         <p 
           className={theme === 'light' ? classes.ourServices_yellowTextLight : classes.ourServices_yellowTextDark}
         >
-          Web Design
+          {t('webDes')}
 
         </p>
         <p className={theme === 'light' ? classes.ourServices_grayTextLight : classes.ourServices_grayTextDark}>
-          {grayTextBig}
+          {t('grayTextBig')}
         </p>
         <p 
           className={theme === 'light' ? classes.ourServices_graySmallTextLight : classes.ourServices_graySmallTextDark}
         >
-          {grayTextSmall}
+          {t('grayTextSmall')}
         </p>
       </div>
     </div>
@@ -39,8 +41,6 @@ function PostOurServices({
 PostOurServices.propTypes = {
   upperSvg: PropTypes.string.isRequired,
   lowerSvg: PropTypes.string.isRequired,
-  grayTextBig: PropTypes.string.isRequired,
-  grayTextSmall: PropTypes.string.isRequired,
 };
 
 export default PostOurServices;

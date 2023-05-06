@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import classes from './css/Content.module.css';
 import postData from '../../constants/postData';
 import Post from './ContentPost';
 import { ARROW_UP_KEY_CODE, ARROW_DOWN_KEY_CODE } from '../../constants/constants';
 import { ThemeContext } from '../Layout';
+
 // 
 function Content() {
   const [isDateChecked, setIsDateChecked] = useState(false);
@@ -16,6 +18,7 @@ function Content() {
   const [currentCard, setCurrentCard] = useState([]);
   const [activeEvent, setActiveEvent] = useState([]);
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   const handleKeyDown = (e) => {
     const keyCode = e.keyCode || e.which;
@@ -211,7 +214,7 @@ function Content() {
             checked={isAlphabetChecked} 
             onChange={handleCheckboxAlphabetChange}
           />
-          Filter by alphabet
+          {t('alphabet')}
           <span className={classes.checkmark} />
         </label>
         <label 
@@ -224,7 +227,7 @@ function Content() {
             checked={isDateChecked} 
             onChange={handleCheckboxDateChange}
           />
-          Filter by post date
+          {t('postDate')}
           <span className={classes.checkmark} />
         </label> 
         <label 
@@ -237,7 +240,7 @@ function Content() {
             checked={isLessChecked} 
             onChange={handleCheckboxLessThan10} 
           />
-          Show last ten
+          {t('lastTen')}
           <span className={classes.checkmark} />
         </label>
       </div>
